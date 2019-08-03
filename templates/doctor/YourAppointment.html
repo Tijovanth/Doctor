@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'doctor/css/bootstrap.min.css' %}">
+    <style>
+      img{
+        width:60px;
+        heigth:60px;
+        border-radius: 35px;
+      }
+    </style>
+  </head>
+    <body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar navbar-dark bg-primary">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <a class="nav navbar-brand  navbar-right" href="{% url 'logout' %}">Logout</a>
+    <a class="nav navbar-brand  navbar-right" href="#">Welcome:{{user.username}}</a>
+    <a class="nav navbar-brand  navbar-right" href="{% url 'doctor:YourAppointment' %}">YourAppointments</a>
+    <a class="nav navbar-brand  navbar-right" href="#"><img src="{{user1.profile_pic.url}}" ></a>
+  </div>
+</div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>This is a Appointment History Page</h1>
+    <h3><ins>Note:TokenNum can be change when Appointment was cancelled</ins></h3>
+  </div>
+</div>
+{% if Appointment_2 %}
+<div class="container">
+  <div class="jumbotron">
+<h3>Present Appointments:</h3><br>
+
+{% for i in Appointment_2 %}
+    <h3>DoctorName:{{i.Doctor.doctor.username}}</h3>
+    <h3>Hospital Name:{{i.Loc.LocationName}}</h3>
+    <h3>Hospital Address:{{i.Loc.LocationAddress}}</h3>
+    <h3>Visiting Time:{{i.Loc.TimingFrom}} to {{i.Loc.TimingTo}}</h3>
+    <h3>Appointment Date:{{i.Date}}</h3>
+    <h3>Token Number:{{i.Slot_No}}</h3>
+    <a href="{{i.id}}"><input type="button" name="" class="btn btn-danger btn-lg" value="Cancel"></a>
+    <h3>__________________________________________________________</h3>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+<br><br>
+{% if Appointment %}
+<div class="container">
+  <div class="jumbotron">
+<h3>Coming Appointments:</h3><br>
+{% for i in Appointment %}
+
+    <h3>DoctorName:{{i.Doctor.doctor.username}}</h3>
+    <h3>Hospital Name:{{i.Loc.LocationName}}</h3>
+    <h3>Hospital Address:{{i.Loc.LocationAddress}}</h3>
+    <h3>Visiting Time:{{i.Loc.TimingFrom}} to {{i.Loc.TimingTo}}</h3>
+    <h3>Appointment Date:{{i.Date}}</h3>
+    <h3>Token Number:{{i.Slot_No}}</h3>
+    <a href="{{i.id}}"><input type="button" name="" class="btn btn-danger btn-lg" value="Cancel"></a>
+    <h3>__________________________________________________________</h3>
+
+    {% endfor %}
+    {% endif %}
+  </div>
+  </div>
+<br><br>
+{% if Appointment_1 %}
+<div class="container">
+  <div class="jumbotron">
+<h3>Past Appointments:</h3><br>
+{% for i in Appointment_1 %}
+
+    <h3>DoctorName:{{i.Doctor.doctor.username}}</h3>
+    <h3>Hospital Name:{{i.Loc.LocationName}}</h3>
+    <h3>Hospital Address:{{i.Loc.LocationAddress}}</h3>
+    <h3>Visiting Time:{{i.Loc.TimingFrom}} to {{i.Loc.TimingTo}}</h3>
+    <h3>Appointment Date:{{i.Date|date:"M d,Y"}}</h3>
+    <h3>Token Number:{{i.Slot_No}}</h3>
+    <h3>__________________________________________________________</h3>
+    {% endfor %}
+
+  </div>
+</div>
+{% endif %}
+
+</body>
+</html>

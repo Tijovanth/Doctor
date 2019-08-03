@@ -1,0 +1,13 @@
+{% extends "doctor/base.html" %}
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+    <h1>This is a Update Page</h1>
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ update_form.as_p }}
+      <a href=""><input type="submit" name="" class="btn btn-primary btn-lg" value="Update!!"></a>
+    </form>
+</div>
+</div>
+{% endblock %}

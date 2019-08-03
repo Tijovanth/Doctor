@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'doctor/css/bootstrap.min.css' %}">
+    <style>
+      img{
+        width:60px;
+        heigth:60px;
+        border-radius: 35px;
+      }
+    </style>
+  </head>
+    <body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar navbar-dark bg-primary">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <a class="nav navbar-brand  navbar-right" href="{% url 'logout' %}">Logout</a>
+    <a class="nav navbar-brand  navbar-right" href="#">Welcome:{{user.username}}</a>
+    <a class="nav navbar-brand  navbar-right" href="{% url 'doctor:YourAppointment' %}">YourAppointments</a>
+    <a class="nav navbar-brand  navbar-right" href="#"><img src="{{user1.profile_pic.url}}" ></a>
+  </div>
+</div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+<h1>This is a General Physician Page</h1>
+{% for i in generalnames %}
+  <a href="{{i}}"><li>{{i}}</li></a><br>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>

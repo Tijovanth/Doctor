@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'doctor/css/bootstrap.min.css' %}">
+    <style>
+      img{
+        width:60px;
+        heigth:60px;
+        border-radius: 35px;
+      }
+      #Remaining{
+        position:absolute;
+        top:224px;
+        right:900px;
+      }
+      #No{
+       position:absolute;
+       top:224px;
+       right:680px;
+      }
+    </style>
+  </head>
+    <body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar navbar-dark bg-primary">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <a class="nav navbar-brand  navbar-right" href="{% url 'logout' %}">Logout</a>
+    <a class="nav navbar-brand  navbar-right" href="#">Welcome:{{user.username}}</a>
+    <a class="nav navbar-brand  navbar-right" href="{% url 'doctor:YourAppointment' %}">YourAppointments</a>
+    <a class="nav navbar-brand  navbar-right" href="#"><img src="{{user1.profile_pic.url}}" ></a>
+  </div>
+</div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>This is Book Appointment Page</h1>
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <table id='Available'>
+        <tr><th>Available Days</th></tr>
+      {% for i in dateRange %}
+      <tr>
+      <td><input type="radio" name="date" value='{{i|date:"Y-m-d"}}'>{{i}}</td>
+      </tr>
+      {% endfor %}
+      </table>
+      <table id="Remaining">
+        <tr><th>RemainingSlots</th></tr>
+      {% for i in RemainingSlot %}
+      <tr>
+         <td>{{i}}</td>
+         </tr>
+      {% endfor %}
+      </table>
+      <table id="No">
+        <tr><th>No Slotes for these days</th></tr>
+      {% for i in NoSlotes %}
+      <tr>
+         <td>{{i}}</td>
+         </tr>
+      {% endfor %}
+      </table>
+      <br>
+     <textarea name="Reason_to_visit" rows="8" placeholder="Reason_to_visit"cols="80"></textarea><br><br>
+      <input type="submit" name=""class="btn btn-primary btn-lg"  value="Register">
+      <!-- {{book}} -->
+    </form>
+
+  </div>
+  </div>
+</body>
+</html>

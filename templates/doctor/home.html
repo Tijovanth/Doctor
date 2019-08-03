@@ -1,0 +1,53 @@
+{% extends "doctor/base.html" %}
+{% block head_block %}
+<style>
+.Doctor{
+  float:right;
+  margin-top: -575px;
+  margin-right: 150px;
+}
+.User{
+  margin-top:15px;
+  width:500px;
+  margin-left: 150px;
+}
+.heading{
+  margin-top: 10px;
+  margin-left: 200px;
+}
+</style>
+{% endblock %}
+{% block body_block %}
+<div class="heading">
+<h1>Welcome to Doctor Appoinment Booking System</h1>
+ </div>
+<div class="User">
+<div class="container">
+   <div class="jumbotron">
+<h2>If you are a New User</h2>
+<h4>Join with us!</h4>
+<h4>We are giving here the Best in Best!!</h4>
+<a href="{% url 'doctor:UserRegistration' %}"><input type="submit" name="" class="btn btn-primary btn-lg" value="Sign In!"></a>
+<br><br><br>
+<h2>If you have an Account </h2>
+<h4>Hurry Doctors are waiting for you!!</h4>
+<a href="{% url 'doctor:UserLogin' %}"><input type="submit" name="" class="btn btn-primary btn-lg" value="Login!"></a>
+</div>
+ </div>
+</div>
+<br><br><br>
+<div class="Doctor">
+<div class="container" class="doctor">
+   <div class="jumbotron">
+<h2>If you are a New Doctor</h2>
+<h4>Join with us!</h4>
+<h4>We are giving here the Best in Best!!</h4>
+<a href="{% url 'doctor:DoctorRegistration' %}"><input type="submit" name="" class="btn btn-primary btn-lg" value="Sign In!"></a>
+<br><br><br>
+<h2>If you have an Account </h2>
+<h4>Hurry patients are waiting for you!!</h4>
+<a href="{% url 'doctor:DoctorLogin' %}"><input type="submit" name="" class="btn btn-primary btn-lg" value="Login!"></a>
+ </div>
+  </div>
+</div>
+{% endblock%}

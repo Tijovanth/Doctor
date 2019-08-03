@@ -1,0 +1,28 @@
+{% extends "doctor/base.html" %}
+{% block head_block %}
+<style>
+#from{
+  position:absolute;
+  top:500px;
+  right:670px;
+}
+#to{
+  position:absolute;
+  top:550px;
+  right:670px;
+}
+</style>
+{% endblock%}
+{% block body_block %}
+<div class="container">
+  <div class="jumbotron">
+<form enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  {{ location_form.as_p }}
+  <input type="submit" name=""class="btn btn-primary btn-lg"  value="Add">
+</form>
+</div>
+<ins id="from">This is 24hrs format (e.g: 22:30)</ins>
+<ins id="to">This is 24hrs format (e.g: 22:30)</ins>
+</div>
+{% endblock%}

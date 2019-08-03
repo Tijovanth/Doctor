@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'doctor/css/bootstrap.min.css' %}">
+    <style>
+      #hashtag{
+        width:60px;
+        heigth:60px;
+        border-radius: 35px;
+      }
+      .location{
+        border:1px solid black;
+        padding:5px;
+      }
+    </style>
+  </head>
+    <body>
+      {% if who %}
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar navbar-dark bg-primary">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <a class="nav navbar-brand  navbar-right" href="{% url 'logout' %}">Logout</a>
+    <a class="nav navbar-brand  navbar-right" href="#">Welcome:{{user.username}}</a>
+    <!-- <a class="nav navbar-brand  navbar-right" href="{% url 'doctor:YourAppointment' %}">YourAppointments</a> -->
+    <a class="nav navbar-brand  navbar-right" href="#"><img id ="hashtag" src="{{user1.profile_pic.url}}" ></a>
+  </div>
+</div>
+</nav>
+<div class="container">
+  <h1>This is a doctor detail page</h1>
+</div>
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Doctor Details</h2>
+
+    <p><img src="{{details.2.url}}" alt=""></p>
+    <p><img src="{{details.3.url}}" alt=""></p>
+    <p>Doctor Name: {{details.0}}</p>
+    <p>Doctor Age: {{details.5}}</p>
+    <p>Doctor Description: {{details.6}}</p>
+    <p>Specialist: {{details.1}}</p>
+    <h3>Locations:          <span><a href="doctor/{{details.4}}/locationregister">ADD LOCATION</a></span></h3>
+     {% for i in location%}
+     <p>Doctor Workinglocation : {{i.LocationName}} {{i.LocationAddress}}</p>
+       <a href="{{ i.id }}/DoctorUpdate"><input type="submit" name="" class="btn btn-primary btn-lg" value="Edit"></a>
+       <a href="{{ i.id }}/DoctorDelete"><input type="submit" name="" class="btn btn-danger btn-lg" value="Delete"></a>
+      {%endfor%}
+
+    </div>
+    </div>
+  {% else %}
+  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="nav navbar-brand  navbar-right" href="{% url 'logout' %}">Logout</a>
+      <a class="nav navbar-brand  navbar-right" href="#">Welcome:{{user.username}}</a>
+      <a class="nav navbar-brand  navbar-right" href="{% url 'doctor:YourAppointment' %}">YourAppointments</a>
+      <a class="nav navbar-brand  navbar-right" href="#"><img id ="hashtag" src="{{user1.profile_pic.url}}" ></a>
+    </div>
+  </div>
+  </nav>
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Doctor Details</h2>
+      <p id ="image"><img src="{{details.2.url}}" alt=""></p>
+      <p id="image"><img src="{{details.3.url}}" alt=""></p>
+      <p>Doctor Name: {{details.0}}</p>
+      <p>Doctor Age: {{details.5}}</p>
+      <p>Doctor Description: {{details.6}}</p>
+      <p>Specialist: {{details.1}}</p>
+      <h3>Locations:</h3>
+      <div class="location">
+       {% for i in location%}
+       <p>Doctor Workinglocation : {{i.LocationName}} {{i.LocationAddress}}</p>
+       <p>Timings: {{i.TimingFrom}} to {{i.TimingTo}}</p>
+         <a href="{{i.id}}"><input type="submit" name="" class="btn btn-primary btn-lg" value="BookAppoinment"></a>
+        {%endfor%}
+        </div>
+    </div>
+    </div>
+    {% endif %}
+</body>
+</html>

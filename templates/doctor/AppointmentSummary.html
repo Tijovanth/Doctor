@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'doctor/css/bootstrap.min.css' %}">
+    <style>
+      img{
+        width:60px;
+        heigth:60px;
+        border-radius: 35px;
+      }
+    </style>
+  </head>
+    <body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top navbar navbar-dark bg-primary">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <a class="nav navbar-brand  navbar-right" href="{% url 'logout' %}">Logout</a>
+    <a class="nav navbar-brand  navbar-right" href="#">Welcome:{{user.username}}</a>
+    <a class="nav navbar-brand  navbar-right" href="{% url 'doctor:YourAppointment' %}">YourAppointments</a>
+    <a class="nav navbar-brand  navbar-right" href="#"><img src="{{book.User.profile_pic.url}}" ></a>
+  </div>
+</div>
+</nav>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Appointment Summary:</h1>
+    <h3>DoctorName:{{book.Doctor.doctor.username}}</h3>
+    <h3>Hospital Name:{{book.Loc.LocationName}}</h3>
+    <h3>Hospital Address:{{book.Loc.LocationAddress}}</h3>
+    <h3>Visiting Time:{{book.Loc.TimingFrom}} to {{book.Loc.TimingTo}}</h3>
+    <h3>Appointment Date:{{book.Date}}</h3>
+    <h3>Token Number:{{book.Slot_No}}</h3>
+    <a href="{% url 'home' %}"><input type="button" name="" class="btn btn-primary btn-lg" value="Ok"></a>
+  </div>
+</div>
+
+</body>
+</html>

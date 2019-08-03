@@ -1,0 +1,22 @@
+{% extends "doctor/base.html" %}
+{% load staticfiles %}
+{% block body_block%}
+<div class="container">
+  <div class="jumbotron">
+     {% if registered %}
+      <h1>Thank you for registering!</h1>
+      <a href="{% url 'doctor:DoctorLogin' %}"><input type="submit" name="" class="btn btn-primary btn-lg" value="Login!"></a>
+    {% else %}
+      <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ doctor_form.as_p }}
+        {{ doctorprofile_form.as_p }}
+        <input type="submit" name=""class="btn btn-primary btn-lg"  value="Register">
+      </form>
+
+    {% endif %}
+
+  </div>
+
+</div>
+{% endblock%}
